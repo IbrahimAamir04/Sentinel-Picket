@@ -1,0 +1,2 @@
+# The collector uses only the Python standard library (Python 3.11 or newer).
+# Optional: on Windows, `pip install tzdata` if snort.timezone should be an IANA name such as "Europe/London".

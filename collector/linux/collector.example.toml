@@ -1,0 +1,30 @@
+# Sentinel collector: Linux. Copy to /etc/sentinel-collector/collector.toml and edit.
+# The API key does NOT go in this file. Put it in /etc/sentinel-collector/env as SENTINEL_API_KEY=snt_...  (chmod 600)
+
+[server]
+url = "https://sentinel.example.com"
+api_key_env = "SENTINEL_API_KEY"
+# api_key_file = "/etc/sentinel-collector/api_key"     # alternative: a file holding only the key (chmod 600)
+# ca_file = "/etc/ssl/certs/my-internal-ca.pem"        # only for a private certificate authority
+# allow_insecure_http = false                          # leave off: plain http would expose the key
+
+[snort]
+# Snort 3 alert_json output. See snort/snort-alert-json.lua for the matching Snort setting.
+alert_file = "/var/log/snort/alert_json.txt"
+start_at = "end"          # "end": ignore existing history on first run. "beginning": send everything already there.
+timezone = "local"        # Snort's text timestamp has no zone. "local", "UTC", or an IANA name. Not needed if `seconds` is logged.
+
+[payloads]
+# OFF by default. When on, the collector hashes each alert's `b64_data` (one packet's data, not a whole file) and sends
+# only the SHA-256, size and a guessed MIME type. See collector/README.md before enabling.
+enabled = false
+min_bytes = 16
+
+[collector]
+state_file = "/var/lib/sentinel-collector/state.json"
+batch_size = 100
+flush_interval_seconds = 2
+heartbeat_interval_seconds = 30
+log_level = "INFO"
+# snort_version = "3.3.2.0"   # reported to the dashboard (the collector does not run Snort to find out)
+# ip = "10.20.0.11"           # reported to the dashboard; detected automatically if omitted

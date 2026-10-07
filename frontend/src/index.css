@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+
+  --color-bg: #0b0f14;
+  --color-surface: #11161d;
+  --color-raised: #161c25;
+  --color-line: #232b36;
+  --color-line-strong: #2f3947;
+  --color-fg: #d6dde6;
+  --color-muted: #8693a4;
+  --color-faint: #5d6a7b;
+
+  --color-accent: #4aa8ff;
+  --color-ok: #34c38f;
+  --color-crit: #f0524f;
+  --color-high: #f08a3c;
+  --color-med: #e3b341;
+  --color-low: #4aa8ff;
+}
+
+html, body, #root { height: 100%; }
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 4px; }
+
+* { scrollbar-width: thin; scrollbar-color: var(--color-line-strong) transparent; }
+
+@keyframes drawer-in { from { transform: translateX(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+.drawer-in { animation: drawer-in 160ms ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer-in { animation: none; }
+  * { transition: none !important; }
+}

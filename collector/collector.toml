@@ -1,0 +1,21 @@
+[server]
+url = "http://127.0.0.1:8000"
+api_key_env = "SENTINEL_API_KEY"
+api_key_file = 'C:\Users\PC\AppData\Local\Sentinel\api_key.txt'
+
+[snort]
+alert_file = 'C:\Snort\log\alert.ids'
+start_at = "end"
+timezone = "local"
+
+[payloads]
+enabled = false
+min_bytes = 16
+
+[collector]
+state_file = 'C:\Users\PC\AppData\Local\Sentinel\collector-state.json'
+batch_size = 100
+flush_interval_seconds = 2
+heartbeat_interval_seconds = 30
+log_level = "INFO"
+snort_version = "2.9.20"

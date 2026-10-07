@@ -1,0 +1,29 @@
+# Sentinel collector: Windows. Copy to C:\ProgramData\Sentinel\collector.toml and edit.
+# Use single quotes for Windows paths so backslashes are taken literally.
+#
+# The API key does NOT go in this file. Either set a machine environment variable SENTINEL_API_KEY, or put the key
+# alone in a file readable only by the account that runs the collector (see windows/install-task.ps1).
+
+[server]
+url = "https://sentinel.example.com"
+api_key_env = "SENTINEL_API_KEY"
+api_key_file = 'C:\ProgramData\Sentinel\api_key.txt'
+# ca_file = 'C:\ProgramData\Sentinel\internal-ca.pem'   # only for a private certificate authority
+
+[snort]
+alert_file = 'C:\Snort\log\alert.ids'
+start_at = "end"
+# "local" needs no extra packages. IANA names such as "Europe/London" need:  pip install tzdata
+timezone = "local"
+
+[payloads]
+enabled = false
+min_bytes = 16
+
+[collector]
+state_file = 'C:\ProgramData\Sentinel\collector-state.json'
+batch_size = 100
+flush_interval_seconds = 2
+heartbeat_interval_seconds = 30
+log_level = "INFO"
+# snort_version = "2.9.20"

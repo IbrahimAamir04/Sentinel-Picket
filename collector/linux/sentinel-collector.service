@@ -1,0 +1,43 @@
+# /etc/systemd/system/sentinel-collector.service
+#
+#   sudo useradd --system --no-create-home --shell /usr/sbin/nologin sentinel-collector
+#   sudo usermod -aG snort sentinel-collector         # whichever group can read the Snort log directory
+#   sudo install -d -o root -g sentinel-collector -m 750 /etc/sentinel-collector
+#   sudo install -m 640 -g sentinel-collector env /etc/sentinel-collector/env      # contains SENTINEL_API_KEY=...
+#   sudo systemctl daemon-reload && sudo systemctl enable --now sentinel-collector
+#
+# Adjust ExecStart if the collector is installed elsewhere, and ReadOnlyPaths to your Snort log directory.
+[Unit]
+Description=Sentinel collector (ships Snort 3 JSON alerts to Sentinel)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sentinel-collector
+EnvironmentFile=/etc/sentinel-collector/env
+WorkingDirectory=/opt/sentinel/collector
+ExecStart=/usr/bin/python3 -m sentinel_collector run --config /etc/sentinel-collector/collector.toml
+Restart=always
+RestartSec=5
+
+# Least privilege: it reads one log file and talks to one server.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ReadOnlyPaths=/var/log/snort
+ReadWritePaths=/var/lib/sentinel-collector
+StateDirectory=sentinel-collector
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+CapabilityBoundingSet=
+SystemCallArchitectures=native
+
+[Install]
+WantedBy=multi-user.target
