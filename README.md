@@ -1,8 +1,28 @@
 # Sentinel
 
-A security operations dashboard for monitoring Snort alerts, payload intelligence, and sensor health in real time.
+Status: Work in progress (WIP)
 
-Sentinel gives teams a centralized place to review traffic-generated security events, inspect suspicious payloads, and track the operational health of distributed sensors.
+Sentinel is a modern security operations dashboard built to help teams detect, investigate, and monitor network threats in one place. It combines Snort alert ingestion, payload intelligence, and sensor health visibility into a unified interface, making it easier to track incidents, understand suspicious traffic patterns, and maintain operational awareness across distributed environments.
+
+## Current implementation status
+
+This project is a WIP and currently includes the work from Phase 1 through Phase 3:
+
+- Phase 1: Frontend shell, demo data, and initial dashboard/alert/payload UI pages
+- Phase 2: Django backend, PostgreSQL integration, REST API, authentication, and role-based access
+- Phase 3: Snort ingestion pipeline, collector tooling, sensor management, and telemetry processing
+
+### Roadmap
+
+Implemented:
+- Phase 1: Frontend, demo mode, and core pages
+- Phase 2: Django API, auth, and persistence
+- Phase 3: Snort ingestion, collectors, and sensor monitoring
+
+Remaining:
+- Phase 4: SHA-256 handling, VirusTotal integration, and Celery/Redis processing
+- Phase 5: Realtime monitoring and WebSocket updates
+- Phase 6: Docker, CI/CD, production hardening, and test coverage
 
 ## Why this project exists
 
@@ -56,19 +76,6 @@ collector/     Python-based Snort collectors and ingest workers
 frontend/      React + TypeScript dashboard and UI
 docs/          Product and ingestion documentation
 ```
-
-## Project status
-
-This project is under active development and is structured around a phased roadmap:
-
-| Phase | Scope | Status |
-| --- | --- | --- |
-| 1 | Frontend, demo data, core UI pages | Done |
-| 2 | Django, API, auth, database integration | Done |
-| 3 | Snort ingestion, collectors, sensors | In progress |
-| 4 | SHA-256, VirusTotal, Celery/Redis | Planned |
-| 5 | Realtime streaming / WebSockets | Planned |
-| 6 | Docker, CI, additional hardening | Planned |
 
 ## Getting started
 
