@@ -1,8 +1,8 @@
-# Sentinel
+# Sentinel-Picket
 
 Status: Work in progress (WIP)
 
-Sentinel is a modern security operations dashboard built to help teams detect, investigate, and monitor network threats in one place. It combines Snort alert ingestion, payload intelligence, and sensor health visibility into a unified interface, making it easier to track incidents, understand suspicious traffic patterns, and maintain operational awareness across distributed environments.
+Sentinel-Picket is a modern security operations dashboard built to help teams detect, investigate, and monitor network threats in one place. It combines Snort alert ingestion, payload intelligence, and sensor health visibility into a unified interface, making it easier to track incidents, understand suspicious traffic patterns, and maintain operational awareness across distributed environments.
 
 ## Current implementation status
 
